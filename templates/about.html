@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | AI Sign Language Translator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#0a0e17;--bg2:#111827;--card:#151d2e;--card2:#1a2438;--t1:#e8edf5;--t2:#8892a4;--t3:#5a6478;--a1:#00e5a0;--a2:#00b4d8;--a3:#7c3aed;--glow:rgba(0,229,160,0.15);--brd:rgba(255,255,255,0.06);--brd2:rgba(0,229,160,0.3);--r:16px;--rs:10px}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden;line-height:1.6}
+        body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 10%,rgba(0,229,160,0.06),transparent),radial-gradient(ellipse 60% 40% at 80% 90%,rgba(124,58,237,0.05),transparent);pointer-events:none;z-index:0}
+        body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,14,23,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--brd);padding:0 2rem;height:70px;display:flex;align-items:center;justify-content:space-between}
+        .nav-b{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--t1)}
+        .nav-i{width:42px;height:42px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 24px rgba(0,229,160,0.2)}
+        .nav-t{font-weight:700;font-size:1.15rem}.nav-t span{color:var(--a1)}
+        .nav-l{display:flex;gap:4px;list-style:none}
+        .nav-l a{color:var(--t2);text-decoration:none;padding:8px 18px;border-radius:var(--rs);font-weight:500;font-size:0.92rem;transition:all 0.25s ease}
+        .nav-l a:hover,.nav-l a.on{color:var(--a1);background:var(--glow)}
+
+        main{position:relative;z-index:1;padding-top:70px;min-height:100vh}
+        .box{max-width:1200px;margin:0 auto;padding:2rem}
+        .ph h1{font-size:2rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.4rem;padding-top:1rem}
+        .ph p{color:var(--t2);font-size:1rem;margin-bottom:1.5rem}
+
+        .about{max-width:800px}
+        .about h2{font-size:1.5rem;margin-top:2rem;margin-bottom:0.8rem;color:var(--a1)}
+        .about p{color:var(--t2);margin-bottom:1rem;line-height:1.8}
+        .about strong{color:var(--t1)}
+
+        .tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:1rem 0}
+        .tt{background:var(--card);border:1px solid var(--brd);border-radius:var(--rs);padding:12px 16px;font-weight:500;font-size:0.9rem;text-align:center}
+
+        .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px;margin:1rem 0}
+        .sg .tt{padding:8px}
+
+        .wg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:8px}
+        .wt{background:var(--card);border:1px solid var(--brd2);border-radius:var(--rs);padding:10px 14px;font-weight:500;font-size:0.9rem;text-align:center;color:var(--a1)}
+
+        .dp{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:0.85rem;line-height:2;margin-top:0.5rem}
+        .dp .cm{color:var(--t3)}
+
+        .ft{text-align:center;padding:2rem;color:var(--t3);font-size:0.85rem;border-top:1px solid var(--brd);margin-top:3rem}
+
+        @keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .an{opacity:0;animation:fu .6s ease forwards}.d1{animation-delay:.1s}
+
+        @media(max-width:768px){.nav{padding:0 1rem}.nav-l a{padding:8px 10px;font-size:.82rem}.box{padding:1rem}.tg{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="/" class="nav-b"><div class="nav-i">🤟</div><div class="nav-t">Sign<span>AI</span></div></a>
+        <ul class="nav-l">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sign_to_text">Sign → Text</a></li>
+            <li><a href="/text_to_sign">Text → Sign</a></li>
+            <li><a href="/about" class="on">About</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="box">
+            <div class="ph an"><h1>About This Project</h1><p>AI-Powered Sign Language Translator — UG Final Year Project</p></div>
+            <div class="about an d1">
+                <h2>Project Overview</h2>
+                <p>This is an AI-powered bidirectional sign language translation system. It bridges the communication gap between sign language users and non-signers by providing two core capabilities: real-time sign-to-text translation using computer vision and deep learning, and text-to-sign conversion using 3D animated hand gestures.</p>
+                <p>The system supports the American Sign Language (ASL) alphabet (A–Z), digit gestures (0–9), and common word-level signs including Hello, Hi, Good Morning, Thank You, Sorry, Please, Yes, and No. A total of 44 sign classes are recognized by the AI model.</p>
+
+                <h2>System Architecture</h2>
+                <p><strong>Sign → Text Pipeline:</strong> The webcam captures live video frames, which are processed by Google's MediaPipe Hands to detect 21 hand landmarks with 3D coordinates. These 63 features (21 landmarks × 3 axes) are fed into a trained neural network that classifies the hand shape into one of the 44 sign classes. A sentence builder module with debouncing logic accumulates detected signs into readable text, automatically inserting spaces when the hand is removed from view.</p>
+                <p><strong>Text → Sign Pipeline:</strong> User-entered text is preprocessed and checked against the common word gesture database. Known words are rendered as complete sign animations, while unknown words are finger-spelled letter by letter. The 3D hand model is rendered using Three.js with WebGL, featuring 21 animated joint nodes connected by bone segments, with smooth interpolation between sign poses.</p>
+
+                <h2>AI Model Details</h2>
+                <p>The recognition model is a Multi-Layer Perceptron (MLP) neural network built with scikit-learn. It takes the 63-dimensional landmark feature vector and passes it through a deep architecture of hidden layers (512→256→128→64 neurons) with ReLU activation. The pipeline includes StandardScaler for feature normalization and uses the Adam optimizer with adaptive learning rate and early stopping.</p>
+                <p>The model is trained on a generated dataset of 600 augmented samples per class (26,400 total), created from canonical ASL hand landmark positions with random noise, scaling, translation, and rotation augmentation.</p>
+
+                <h2>Technology Stack</h2>
+                <div class="tg">
+                    <div class="tt">Python 3</div>
+                    <div class="tt">Flask</div>
+                    <div class="tt">scikit-learn (MLP)</div>
+                    <div class="tt">MediaPipe Hands</div>
+                    <div class="tt">OpenCV</div>
+                    <div class="tt">NumPy</div>
+                    <div class="tt">Three.js (WebGL)</div>
+                    <div class="tt">JavaScript ES6</div>
+                    <div class="tt">HTML5 / CSS3</div>
+                    <div class="tt">Canvas API</div>
+                    <div class="tt">WebRTC</div>
+                    <div class="tt">joblib</div>
+                </div>
+
+                <h2>Key Features</h2>
+                <p><strong>Real-time inference</strong> — Predictions at ~10 FPS with sub-200ms latency. <strong>Sentence building</strong> — Automatic space detection and word recognition. <strong>Auto-training</strong> — Model trains automatically on first launch. <strong>Offline capable</strong> — Works without internet after setup. <strong>3D animation</strong> — Smooth hand gestures rendered in WebGL. <strong>Single-file backend</strong> — Entire Python backend in one file.</p>
+
+                <h2>Supported Signs</h2>
+                <div class="sg">
+                    <div class="tt">A</div><div class="tt">B</div><div class="tt">C</div><div class="tt">D</div>
+                    <div class="tt">E</div><div class="tt">F</div><div class="tt">G</div><div class="tt">H</div>
+                    <div class="tt">I</div><div class="tt">J</div><div class="tt">K</div><div class="tt">L</div>
+                    <div class="tt">M</div><div class="tt">N</div><div class="tt">O</div><div class="tt">P</div>
+                    <div class="tt">Q</div><div class="tt">R</div><div class="tt">S</div><div class="tt">T</div>
+                    <div class="tt">U</div><div class="tt">V</div><div class="tt">W</div><div class="tt">X</div>
+                    <div class="tt">Y</div><div class="tt">Z</div>
+                    <div class="tt">0</div><div class="tt">1</div><div class="tt">2</div><div class="tt">3</div>
+                    <div class="tt">4</div><div class="tt">5</div><div class="tt">6</div><div class="tt">7</div>
+                    <div class="tt">8</div><div class="tt">9</div>
+                </div>
+                <div class="wg">
+                    <div class="wt">Hello</div><div class="wt">Hi</div><div class="wt">Good Morning</div><div class="wt">Thank You</div>
+                    <div class="wt">Sorry</div><div class="wt">Please</div><div class="wt">Yes</div><div class="wt">No</div>
+                </div>
+
+                <h2>How to Run</h2>
+                <div class="dp">
+                    <span class="cm"># Install dependencies</span><br>
+                    pip install -r requirements.txt<br><br>
+                    <span class="cm"># Run the application</span><br>
+                    python app.py<br><br>
+                    <span class="cm"># Open in browser</span><br>
+                    http://localhost:5000
+                </div>
+            </div>
+        </div>
+        <footer class="ft">AI Sign Language Translator — UG Final Year Project</footer>
+    </main>
+</body>
+</html>
