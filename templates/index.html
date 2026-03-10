@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sign Language Translator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#0a0e17;--bg2:#111827;--card:#151d2e;--card2:#1a2438;--t1:#e8edf5;--t2:#8892a4;--t3:#5a6478;--a1:#00e5a0;--a2:#00b4d8;--a3:#7c3aed;--glow:rgba(0,229,160,0.15);--brd:rgba(255,255,255,0.06);--brd2:rgba(0,229,160,0.3);--r:16px;--rs:10px}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+        body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden;line-height:1.6}
+        body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 10%,rgba(0,229,160,0.06),transparent),radial-gradient(ellipse 60% 40% at 80% 90%,rgba(124,58,237,0.05),transparent);pointer-events:none;z-index:0}
+        body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,14,23,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--brd);padding:0 2rem;height:70px;display:flex;align-items:center;justify-content:space-between}
+        .nav-b{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--t1)}
+        .nav-i{width:42px;height:42px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 24px rgba(0,229,160,0.2)}
+        .nav-t{font-weight:700;font-size:1.15rem;letter-spacing:-0.02em}
+        .nav-t span{color:var(--a1)}
+        .nav-l{display:flex;gap:4px;list-style:none}
+        .nav-l a{color:var(--t2);text-decoration:none;padding:8px 18px;border-radius:var(--rs);font-weight:500;font-size:0.92rem;transition:all 0.25s ease}
+        .nav-l a:hover,.nav-l a.on{color:var(--a1);background:var(--glow)}
+
+        main{position:relative;z-index:1;padding-top:70px;min-height:100vh}
+        .box{max-width:1200px;margin:0 auto;padding:2rem}
+        .hero{text-align:center;padding:5rem 2rem 3rem}
+        .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:var(--glow);border:1px solid var(--brd2);border-radius:50px;font-size:0.82rem;font-weight:500;color:var(--a1);margin-bottom:1.5rem;letter-spacing:0.03em}
+        .badge::before{content:'';width:6px;height:6px;background:var(--a1);border-radius:50%;animation:pd 2s ease infinite}
+        @keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+        .hero h1{font-size:clamp(2.5rem,5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1.2rem}
+        .grad{background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-d{color:var(--t2);font-size:1.12rem;max-width:600px;margin:0 auto 2.5rem;line-height:1.7}
+
+        .cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;max-width:900px;margin:0 auto}
+        .c{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:2rem;transition:all 0.35s ease;position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block}
+        .c::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--a1),var(--a2));opacity:0;transition:opacity 0.35s ease}
+        .c:hover{background:var(--card2);border-color:var(--brd2);transform:translateY(-4px);box-shadow:0 0 30px rgba(0,229,160,0.12)}
+        .c:hover::before{opacity:1}
+        .ci{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:1.2rem}
+        .ci.g{background:rgba(0,229,160,0.12)}
+        .ci.b{background:rgba(0,180,216,0.12)}
+        .c h3{font-size:1.3rem;font-weight:700;margin-bottom:0.6rem}
+        .c p{color:var(--t2);font-size:0.95rem;line-height:1.6}
+        .ca{position:absolute;bottom:1.5rem;right:1.5rem;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--t3);transition:all 0.3s ease}
+        .c:hover .ca{background:var(--a1);color:var(--bg);transform:translateX(4px)}
+
+        .sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:900px;margin:2rem auto 0}
+        .sc{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:1.5rem;text-align:center}
+        .sv{font-family:'JetBrains Mono',monospace;font-size:2.2rem;font-weight:600;color:var(--a1)}
+        .sv.bl{color:var(--a2)}
+        .sv.pu{color:var(--a3)}
+        .sl{font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--t3);font-weight:600;margin-top:2px}
+        .ss{font-size:0.78rem;color:var(--t3);margin-top:2px}
+
+        .si{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:500}
+        .sd{width:8px;height:8px;border-radius:50%}
+        .sd.gr{background:var(--a1);box-shadow:0 0 8px var(--a1)}
+        .sd.ye{background:#f59e0b;box-shadow:0 0 8px #f59e0b}
+        .sd.re{background:#ef4444;box-shadow:0 0 8px #ef4444}
+
+        .ft{text-align:center;padding:2rem;color:var(--t3);font-size:0.85rem;border-top:1px solid var(--brd);margin-top:3rem}
+
+        @keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .an{opacity:0;animation:fu .6s ease forwards}
+        .d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}
+
+        @media(max-width:768px){.cg{grid-template-columns:1fr}.sg{grid-template-columns:1fr 1fr}.nav{padding:0 1rem}.nav-l a{padding:8px 10px;font-size:.82rem}.hero{padding:3rem 1rem 2rem}.hero h1{font-size:2rem}}
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="/" class="nav-b">
+            <div class="nav-i">🤟</div>
+            <div class="nav-t">Sign<span>AI</span></div>
+        </a>
+        <ul class="nav-l">
+            <li><a href="/" class="on">Home</a></li>
+            <li><a href="/sign_to_text">Sign → Text</a></li>
+            <li><a href="/text_to_sign">Text → Sign</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="hero">
+            <div class="badge an">AI-Powered &bull; Real-Time &bull; Bidirectional</div>
+            <h1 class="an d1">Breaking Barriers with<br><span class="grad">Sign Language AI</span></h1>
+            <p class="hero-d an d2">A deep learning system that translates sign language to text in real-time using computer vision, and converts text back to 3D animated sign gestures.</p>
+            <div class="an d3" style="margin-bottom:2rem">
+                <div class="si"><span class="sd ye" id="sdot"></span><span id="stxt">Checking model status...</span></div>
+            </div>
+        </section>
+        <div class="box">
+            <div class="cg an d3">
+                <a href="/sign_to_text" class="c">
+                    <div class="ci g">📷</div>
+                    <h3>Sign → Text</h3>
+                    <p>Use your webcam to perform sign language gestures. Our AI detects hand landmarks and translates them into text in real-time. Supports A-Z, 0-9, and common words.</p>
+                    <div class="ca">→</div>
+                </a>
+                <a href="/text_to_sign" class="c">
+                    <div class="ci b">🤲</div>
+                    <h3>Text → Sign</h3>
+                    <p>Type any text and watch it come alive as 3D animated hand gestures. Common words show complete sign animations; other words are finger-spelled letter by letter.</p>
+                    <div class="ca">→</div>
+                </a>
+            </div>
+            <div class="sg an d4">
+                <div class="sc"><div class="sv">36</div><div class="sl">Sign Classes</div><div class="ss">A-Z + 0-9</div></div>
+                <div class="sc"><div class="sv bl">8</div><div class="sl">Common Words</div><div class="ss">Hello, Thank You, etc.</div></div>
+                <div class="sc"><div class="sv pu">3D</div><div class="sl">Animation</div><div class="ss">Three.js WebGL</div></div>
+            </div>
+        </div>
+        <footer class="ft">AI Sign Language Translator — Final Year Project</footer>
+    </main>
+    <script>
+    async function checkStatus(){try{const r=await fetch('/api/status');const d=await r.json();const dot=document.getElementById('sdot');const txt=document.getElementById('stxt');if(d.model_loaded){dot.className='sd gr';txt.textContent='Model ready — '+d.classes+' sign classes loaded';}else if(d.training_status.status==='training'){dot.className='sd ye';txt.textContent=d.training_status.message||'Training...';setTimeout(checkStatus,2000);}else{dot.className='sd re';txt.textContent='Model not loaded';}}catch(e){document.getElementById('stxt').textContent='Connecting...';setTimeout(checkStatus,3000);}}
+    checkStatus();
+    </script>
+</body>
+</html>
