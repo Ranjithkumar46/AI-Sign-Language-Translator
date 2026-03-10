@@ -78,7 +78,7 @@ AI-Sign-Language-Translator/
 ### Step 1: Clone this repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/AI-Sign-Language-Translator.git
+git clone https://github.com/Ranjithkumar46/AI-Sign-Language-Translator
 cd AI-Sign-Language-Translator
 ```
 
